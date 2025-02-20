@@ -44,7 +44,7 @@
       <a href="index.html" class="logo d-flex align-items-center">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="assets/img/logo.png" alt=""> -->
-        <h1 class="sitename">Global Dynamics</h1>
+        <h1 class="sitename">Squadfree</h1>
       </a>
 
       <nav id="navmenu" class="navmenu">
@@ -95,13 +95,10 @@
 
     <section id="service-details" class="service-details section">
         <div class="container">
-            <div class="row gy-4">
-                <div class="col-lg-8">
-                    <img src="assets/img/services.jpg" alt="" class="img-fluid services-img">
-                    <h3 id="service-heading">Loading...</h3>
-                    <p id="service-text">Loading...</p>
-                    <ul id="service-points"></ul>
-                </div>
+            <div class="container mt-5">
+                <h1 id="feature-title"></h1>
+                <img id="feature-image" class="img-fluid mt-3" alt="Feature Image">
+                <p id="feature-description" class="mt-3"></p>
             </div>
         </div>
     </section>
@@ -181,77 +178,66 @@
   <!-- for dynamic rendering  -->
 
   <script>
-   document.addEventListener("DOMContentLoaded", function() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const service = urlParams.get('service');
-    
-  
-    const servicesData = {
-        "bulk-purchasing": {
-            title: "Bulk Purchasing for Retailers",
-            heading: "Exclusive Wholesale Solutions for Your Business",
-            description: "We offer bulk purchasing options for retailers and businesses looking to stock high-quality garments, shoes, electronics, and home essentials. Our wholesale pricing ensures great value for your investment.",
-            image: "assets/img/service1.jpg", // Image path for Bulk Purchasing
-            points: [
-                "✔️ Exclusive discounts on bulk orders",
-                "✔️ Reliable supply chain management",
-                "✔️ Custom packaging and branding options"
-            ]
+  document.addEventListener("DOMContentLoaded", function () {
+    const params = new URLSearchParams(window.location.search);
+    const featureId = params.get("id");
+
+    const featureData = {
+        garments: {
+            title: "Garments",
+            description: "Discover a variety of clothing for men, women, and kids – casual, formal, and sportswear.",
+            image: "https://images.pexels.com/photos/2560892/pexels-photo-2560892.jpeg"
         },
-        "fast-shipping": {
-            title: "Fast & Secure Shipping",
-            heading: "Reliable Nationwide Delivery & Tracking",
-            description: "We provide nationwide shipping with trusted courier services to ensure your products arrive safely and on time. International shipping will be available soon as we expand globally.",
-            image: "assets/img/service2.jpg", // Image path for Fast Shipping
-            points: [
-                "✔️ Nationwide delivery within 3-5 days",
-                "✔️ Secure packaging to prevent damage",
-                "✔️ Order tracking for real-time updates"
-            ]
+        shoes: {
+            title: "Shoes",
+            description: "Find the perfect pair of sneakers, formal shoes, sandals, and sports shoes.",
+            image: "https://images.pexels.com/photos/267202/pexels-photo-267202.jpeg"
         },
-        "returns-refunds": {
-            title: "Hassle-Free Returns & Refunds",
-            heading: "Shop with Confidence – Easy Returns & Refunds",
-            description: "Customer satisfaction is our priority! We offer a straightforward return and refund policy, allowing you to shop with confidence.",
-            image: "assets/img/service3.jpg", // Image path for Returns & Refunds
-            points: [
-                "✔️ Easy 7-day return policy",
-                "✔️ Quick refunds for eligible returns",
-                "✔️ Dedicated support for return requests"
-            ]
+        bags: {
+            title: "Bags & Wallets",
+            description: "Explore stylish handbags, backpacks, and wallets for all occasions.",
+            image: "assets/img/bags.jpeg"
         },
-        "customer-support": {
-            title: "Customer Support & Assistance",
-            heading: "24/7 Support for All Your Needs",
-            description: "Our dedicated support team is always ready to assist you with product inquiries, order tracking, and any other concerns.",
-            image: "assets/img/service4.jpg", // Image path for Customer Support
-            points: [
-                "✔️ 24/7 customer service availability",
-                "✔️ Multiple contact channels: Email, Phone, Live Chat",
-                "✔️ Quick resolution for queries and complaints"
-            ]
+        watches: {
+            title: "Watches & Jewelry",
+            description: "Upgrade your look with smartwatches, bracelets, and necklaces.",
+            image: "https://images.pexels.com/photos/277390/pexels-photo-277390.jpeg"
+        },
+        sunglasses: {
+            title: "Sunglasses & Eyewear",
+            description: "Fashionable sunglasses and prescription glasses to match your style.",
+            image: "assets/img/sun.jpeg"
+        },
+        kitchenware: {
+            title: "Kitchenware",
+            description: "Shop for utensils, dinner sets, and appliances to enhance your kitchen experience.",
+            image: "assets/img/kitchen.jpg"
+        },
+        "smart-devices": {
+            title: "Smart Devices",
+            description: "Stay connected with the latest earphones, power banks, and Bluetooth speakers.",
+            image: "https://images.pexels.com/photos/3394650/pexels-photo-3394650.jpeg"
+        },
+        "mobile-accessories": {
+            title: "Mobile Accessories",
+            description: "Get chargers, phone covers, and screen protectors for your devices.",
+            image: "https://images.pexels.com/photos/3361489/pexels-photo-3361489.jpeg"
         }
     };
-  
-    if (service && servicesData[service]) {
-        // Set the service title and description
-        document.getElementById("service-title").innerText = servicesData[service].title;
-        document.getElementById("service-heading").innerText = servicesData[service].heading;
-        document.getElementById("service-description").innerText = servicesData[service].description;
-        document.getElementById("service-text").innerText = servicesData[service].description;
-  
-        // Set the image dynamically
-        const serviceImage = document.querySelector(".services-img");
-        serviceImage.src = servicesData[service].image; // Dynamically update the image source
-  
-        // Populate the list of service points
-        const pointsList = document.getElementById("service-points");
-        pointsList.innerHTML = "";
-        servicesData[service].points.forEach(point => {
-            let li = document.createElement("li");
-            li.innerHTML = `<i class="bi bi-check-circle"></i> <span>${point}</span>`;
-            pointsList.appendChild(li);
-        });
+
+    if (featureId && featureData[featureId]) {
+        // Populate the feature details
+        document.getElementById("feature-title").textContent = featureData[featureId].title;
+        document.getElementById("feature-description").textContent = featureData[featureId].description;
+        document.getElementById("feature-image").src = featureData[featureId].image;
+        document.getElementById("feature-image").alt = featureData[featureId].title;
+
+        // ✅ Also update the service title and description in the top section
+        document.getElementById("service-title").textContent = featureData[featureId].title;
+        document.getElementById("service-description").textContent = featureData[featureId].description;
+    } else {
+        // Show error message if the feature ID is invalid
+        document.body.innerHTML = `<div class="container mt-5 text-center"><h2>Feature not found!</h2><a href="features.html" class="btn btn-primary mt-3">Go Back</a></div>`;
     }
 });
 
